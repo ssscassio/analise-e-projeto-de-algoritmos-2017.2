@@ -27,7 +27,7 @@ public class FordFulkerson {
         this.sumidouro = sumidouro;
     }
 
-    public String getMaximumFlow() {
+    public int getMaximumFlow() {
         //Recovering the starter vertex. (Source)
         Vertex originVertex = (Vertex) graph.getVertexList().get(source);
         //Recovering the destiny vertex. (Sumidouro)
@@ -41,8 +41,8 @@ public class FordFulkerson {
         boolean reachedEnd = false;
         while (finalVertex.isReachable()) {
             while (!reachedEnd) {
-                if (!originVertex.equals(destinyVertex)) { //While actual vertex aren't the final vertex
-                    Edge maximumWeightEdge = originVertex.getMaximumWeightEdge(); //Get the heaviest Edge on vertex edge list.
+                if (!originVertex.equals(finalVertex)) { //While actual vertex aren't the final vertex
+                    Edge maximumWeightEdge = graph.getMaximumWeightUnvisitedVertex(originVertex); //Get the heaviest Edge on vertex edge list.
                     if(maximumWeightEdge.getWeight()<minimumEdgeWeight){
                         minimumEdgeWeight = maximumWeightEdge.getWeight();
                     }
@@ -60,7 +60,12 @@ public class FordFulkerson {
                 }
             }
         }
-        return null;
+        int maximumFlow = 0;
+        for (int i = 0; i < iterationsValues.size(); i++) {
+            int value = (int) iterationsValues.get(i);
+            maximumFlow += value;
+        }
+        return maximumFlow;
     }
     
     /**
@@ -71,7 +76,7 @@ public class FordFulkerson {
     private int backAndSubtract(List<Edge> path,int minimumEdgeWeight){
         Edge edge;
         int newMinimumEdgeWeight = 9999999;
-        while(!path.isEmpty()){
+        while(path.size() != 1){
             edge = path.remove(path.size()-1); //Get the latest path visited 
             edge.setIsVisited(false); //Unsetting isVisited propertie
             int edgeActualWeight = edge.getWeight(); 

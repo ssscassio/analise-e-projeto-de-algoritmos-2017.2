@@ -5,6 +5,7 @@
  */
 package fluxomaximo.Util;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 
 /**
@@ -35,6 +36,21 @@ public class Graph {
         Vertex vertex = (Vertex) vertexList.get(index);
         vertexList.remove(index);
         return vertex;
+    }
+    
+    public Edge getMaximumWeightUnvisitedVertex(Vertex vertex){
+        int maximumWeight = 0;
+        Iterator it = vertex.getEdgeList().iterator();
+        Edge edge = null;
+        while (it.hasNext()) {
+            edge = (Edge) it.next();
+            if(edge.getEndVertex().isVisited()){
+                if (edge.getWeight() > maximumWeight) {
+                    maximumWeight = edge.getWeight();
+                }
+            }
+        }
+        return edge;
     }
     
 }
