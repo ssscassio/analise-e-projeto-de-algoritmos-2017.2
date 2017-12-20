@@ -38,15 +38,15 @@ class Graph {
 
     //Faz uma cópia do grafo no grafo residual
     let residualGraph = Object.assign({}, this.vertices);
-    //Enquanto houverem Nós a serem visitados pela busca em largura
-    while (this.bfs(source, sink, previous, visited, residualGraph)) {
+    //Enquanto o Nó de destino for alcançavel
+    while (this.bfs(source, sink, previous, visited, residualGraph)) { // Complexidade O(VE)
       var flow = Infinity;
 
       var vertex = sink;
       while (vertex != source) {
         var last = previous[vertex];
-        if (residualGraph[last][vertex] < flow) {
-          flow = residualGraph[last][vertex];
+        if (residualGraph[last][vertex] < flow) { //Caso o valor da aresta em questão seja menor que o fluxo atual:
+          flow = residualGraph[last][vertex];   //Substitui-se o valor do fluxo pelo valor menor.
         }
         vertex = previous[vertex];
       }
@@ -89,6 +89,7 @@ class Graph {
 
       var vertex = queue.shift();
 
+      //Para cada aresta, verifica se possui peso maior que 0 e se não foi visitada
       for (edge in residualGraph[vertex]) {
         if (residualGraph[vertex][edge] > 0 && !visited[edge]) {
           previous[edge] = vertex;
