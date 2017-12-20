@@ -25,8 +25,7 @@ const main = (err, data) => {
     g.addEdge(begin, { [end]: weight });
   }
 
-  console.log(g.maxflow(source, sink));
-
+  console.log('Fluxo máximo', g.maxflow(source, sink));
 }
 
 // Leitura do arquivo de entrada
