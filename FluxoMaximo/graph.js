@@ -28,7 +28,7 @@ class Graph {
    * Calcula o fluxo máximo em um determinado grafo a partir de um vértice
    * de partida (source) e um de destino (sink)
    * @param {Number} source Nó (vértice) inicial do fluxo
-   * @param {Object} endObject Nó (vértice) destino do fluxo
+   * @param {Number} sink Nó (vértice) destino do fluxo
    * @return {Number} maxFlow Somatório dos fluxos das iterações
    */
   maxflow(source, sink) {
@@ -38,7 +38,8 @@ class Graph {
 
     //Faz uma cópia do grafo no grafo residual
     let residualGraph = Object.assign({}, this.vertices);
-    while (this.bfs(source, sink, previous, visited, residualGraph)) { //Enquanto houverem Nós a serem visitados pela busca em largura
+    //Enquanto houverem Nós a serem visitados pela busca em largura
+    while (this.bfs(source, sink, previous, visited, residualGraph)) {
       var flow = Infinity;
 
       var vertex = sink;
@@ -49,7 +50,7 @@ class Graph {
         }
         vertex = previous[vertex];
       }
-      
+
       //No bloco seguinte percorre-se do último ao primeiro vertice subtraindo do peso das arestas
       // o valor do fluxo econtrado nesse caminho. 
       vertex = sink;
@@ -69,9 +70,9 @@ class Graph {
   * Verifica-se ainda há meios de se chegar ao destino
   * @param {Number} source Nó de origem 
   * @param {Number} sink Nó destino
-  * @param {Array} previous Nós previamente visitados 
-  * @param {Array} visited Contém a informação se o devido nó ja foi visitado ou não
-  * @param {Array} residualGraph Cópia do grafo na forma original
+  * @param {Object} previous Nós antecessores do nó atual (Contrução do caminho) 
+  * @param {Object} visited Contém a informação se o nó ja foi visitado ou não
+  * @param {Object} residualGraph Cópia do grafo na forma original
   * @return {boolean} Retorna verdadeiro caso ainda restem meios a se chegar no destino
   */
   bfs(source, sink, previous, visited, residualGraph) {
@@ -88,7 +89,6 @@ class Graph {
 
       var vertex = queue.shift();
 
-      //
       for (edge in residualGraph[vertex]) {
         if (residualGraph[vertex][edge] > 0 && !visited[edge]) {
           previous[edge] = vertex;
