@@ -66,21 +66,24 @@ public class FordFulkerson {
     /**
      * This function go back on path, edges visited, subtracting each edge weight by
      * the minmumEdgeWeight found on path and setting "isVisited" false until reach the origin vertex. 
-     * @return 
+     * @return It returns a new minimum edge weight from path. 
      */
-    private int backAndSubtract(List<Edge> path,int minimuEdgeWeight, Vertex origin){
+    private int backAndSubtract(List<Edge> path,int minimumEdgeWeight, Vertex origin){
         Edge edge;
-        int maximumEdgeWeight = 0;
+        int newMinimumEdgeWeight = 9999999;
         while(!path.isEmpty()){
             edge = path.remove(path.size()-1);
             int edgeActualWeight = edge.getWeight();
-            int newEdgeWeight = edgeActualWeight - minimuEdgeWeight;
+            int newEdgeWeight = edgeActualWeight - minimumEdgeWeight;
             if((newEdgeWeight)>0){
                 edge.setWeight(newEdgeWeight);
             }else{
                 edge.setWeight(0);
             }
+            if(newEdgeWeight < newMinimumEdgeWeight){
+                newMinimumEdgeWeight = newEdgeWeight;
+            }
         }
-        return 0;
+        return newMinimumEdgeWeight;
     }
 }
