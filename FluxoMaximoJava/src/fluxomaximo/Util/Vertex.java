@@ -14,9 +14,11 @@ import java.util.LinkedList;
  */
 public class Vertex {
     private LinkedList<Edge> edgeList;
+    private boolean isReachable;
 
     public Vertex() {
         edgeList = new LinkedList();
+        isReachable = true;
     }
 
     public LinkedList<Edge> getEdgeList() {
@@ -55,4 +57,14 @@ public class Vertex {
         }
         return edge;
     }
+
+    public boolean isReachable() {
+        return isReachable;
+    }
+
+    public void setIsReachable(boolean isReachable) {
+        this.isReachable = isReachable;
+    }
+    
+    
 }
