@@ -4,16 +4,33 @@ class Graph {
     this.addVertices(numberOfVertices);
   }
 
+  /**
+   * Inicializa o gráfo com um certo número de nós
+   * @param {Number} numberOfVertices Número de nós que existem no grafo
+   */
   addVertices(numberOfVertices) {
     for (let verticeIndex = 0; verticeIndex < numberOfVertices; verticeIndex++) {
       this.vertices[verticeIndex] = {}
     }
   };
 
+  /**
+   * Adiciona uma nova aresta no grafo conectando dois nós existentes
+   * @param {Number} source Nó de origem da aresta
+   * @param {Object} endObject Objeto de aresta no qual a chave 
+   * é o nó de destino e o valor é o peso da aresta
+   */
   addEdge(source, endObject) {
     this.vertices[source] = Object.assign(this.vertices[source], endObject);
   }
 
+  /**
+   * Calcula o fluxo máximo em um determinado grafo a partir de um vértice
+   * de partida (source) e um de destino (sink)
+   * @param {Number} source Nó (vértice) inicial do fluxo
+   * @param {Object} endObject Nó (vértice) destino do fluxo
+   * @return {Number} maxFlow Somatório dos fluxos das iterações
+   */
   maxflow(source, sink) {
     let maxFlow = 0;
     let previous = {};
@@ -21,7 +38,7 @@ class Graph {
 
     //Faz uma cópia do grafo no grafo residual
     let residualGraph = Object.assign({}, this.vertices);
-    while (this.bfs(source, sink, previous, visited, residualGraph)) {
+    while (this.bfs(source, sink, previous, visited, residualGraph)) { //Enquanto houverem Nós a serem visitados pela busca em largura
       var flow = Infinity;
 
       var vertex = sink;
@@ -32,20 +49,31 @@ class Graph {
         }
         vertex = previous[vertex];
       }
-
+      
+      //No bloco seguinte percorre-se do último ao primeiro vertice subtraindo do peso das arestas
+      // o valor do fluxo econtrado nesse caminho. 
       vertex = sink;
-      while (vertex != source) {
+      while (vertex != source) { //Enquanto não for o vértice de origem
         var last = previous[vertex];
-        residualGraph[last][vertex] -= flow;
-        maxFlow += flow;
+        residualGraph[last][vertex] -= flow; //O peso da aresta será subtraido pelo valor do fluxo
+        maxFlow += flow; //Fluxo máximo é acrescido do valor de fluxo do caminho encontrado
 
-        vertex = previous[vertex];
+        vertex = previous[vertex];//Retorna ao vértice anterior
       }
     }
 
     return maxFlow;
   }
 
+  /** 
+  * Verifica-se ainda há meios de se chegar ao destino
+  * @param {Number} source Nó de origem 
+  * @param {Number} sink Nó destino
+  * @param {Array} previous Nós previamente visitados 
+  * @param {Array} visited Contém a informação se o devido nó ja foi visitado ou não
+  * @param {Array} residualGraph Cópia do grafo na forma original
+  * @return {boolean} Retorna verdadeiro caso ainda restem meios a se chegar no destino
+  */
   bfs(source, sink, previous, visited, residualGraph) {
     // Limpar previous
     for (var prop in previous) { if (previous.hasOwnProperty(prop)) { delete previous[prop]; } }
@@ -60,6 +88,7 @@ class Graph {
 
       var vertex = queue.shift();
 
+      //
       for (edge in residualGraph[vertex]) {
         if (residualGraph[vertex][edge] > 0 && !visited[edge]) {
           previous[edge] = vertex;

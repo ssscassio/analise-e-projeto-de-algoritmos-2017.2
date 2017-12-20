@@ -14,7 +14,8 @@ O propósito do trabalho é o desenvolvimento de alguns algoritmos clássicos da
 ### Dijkstra
 1. Na raiz do projeto execute: **node Dijkstra**
 
-
+### Fluxo Máximo
+1. Na raiz do projeto execute: **node FluxoMaximo**
 
 ## Sobre
 Trabalhos desenvolvidos durante a disciplina Análise e Projeto de Algoritmos no semestre de 2017.2 da Universidade Estadual de Feira de Santana
