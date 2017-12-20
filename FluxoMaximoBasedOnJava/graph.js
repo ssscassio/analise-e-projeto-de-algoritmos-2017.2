@@ -29,29 +29,64 @@ class Graph {
 
   maxFlow(source, sink) {
     var sourceVertex = this.vertices[source];
+    var nextVertex = this.vertices[sink];
     var sinkVertex = this.vertices[sink];
-    var reachedEnd = false;
-    var canReachEnd = true;
+    var path = [];
+    var minimumEdgeWeight = Infinity;
+    var flowSum = [];
 
-    while (canReachEnd) {
+    var reachedEnd = false;
+    while (sinkVertex.isReachable()) {
       while (!reachedEnd) {
         if (sourceVertex.index != sinkVertex.index) {
-
           let maximumWeightEdge = sourceVertex.getMaximumWeightEdge();
-          if (maximumWeightEdge.getWeight() == 0) {
+          if (maximumWeightEdge == null) { // Verificar
+            edge = path.pop();
+            edge.setIsVisited(false);
+            sourceVertex = edge.originVertex;
+            console.log(sourceVertex);
+          } else if (maximumWeightEdge.getWeight() < minimumEdgeWeight) {
+            minimumEdgeWeight = maximumWeightEdge.getWeight();
+            console.log(minimumEdgeWeight)
+          } else if (maximumWeightEdge.getWeight() == 0) {
             reachedEnd = true;
           } else {
             maximumWeightEdge.setIsVisited(true);
+            path.push(maximumWeightEdge);
             sourceVertex = maximumWeightEdge.getStartVertex();
-            sinkVertex = maximumWeightEdge.getEndVertex();
-            console.log(sourceVertex, sinkVertex)
+            nextVertex = maximumWeightEdge.getEndVertex();
           }
         } else {
           reachedEnd = true;
+          flowSum.push(backAndSubtract(path, minimumEdgeWeight));
         }
       }
     }
+
+
   }
+
+  backAndSubtract(path, minimumEdgeWeight) {
+    var edge;
+    var newMinimumEdgeWeight = Infinity;
+    while (!path.isEmpty()) {
+      edge = path.pop();
+      edge.setIsVisited(false);
+      edgeActualWeight = edge.getWeight();
+      newEdgeWeight = edgeActualWeight - minimumEdgeWeight;
+      if ((newEdgeWeight) > 0) {
+        edge.setWeight(newEdgeWeight);
+      } else {
+        edge.setWeight(0);
+      }
+      if (newEdgeWeight < newMinimumEdgeWeight) {
+        newMinimumEdgeWeight = newEdgeWeight;
+      }
+    }
+    return newMinimumEdgeWeight;
+  }
+
+
 }
 
 module.exports = Graph;

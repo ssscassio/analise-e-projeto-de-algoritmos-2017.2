@@ -3,7 +3,7 @@ class Edge {
     this.originVertex = origin; // Vertex
     this.endVertex = destiny; // Vertex;
     this.weight = weight;
-    this.isVisited = false;
+    this.visited = false;
   }
 
   getWeight() {
@@ -31,11 +31,11 @@ class Edge {
   }
 
   setIsVisited(bool) {
-    this.isVisited = bool;
+    this.visited = bool;
   }
 
   isVisited() {
-    return this.isVisited;
+    return this.visited;
   }
 
 }
