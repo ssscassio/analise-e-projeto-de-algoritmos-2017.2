@@ -14,12 +14,30 @@ class Graph {
     this.vertices[source] = Object.assign(this.vertices[source], endObject);
   }
 
-  distance(path) {
-    let weight = 0;
-    for (i = 0; i < path.length - 1; i++) {
-      weight += this.vertices[path[i]][path[i + 1]]
+  maxflow(source, sink) {
+    var sum = 0;
+    var flows = this.vertices;
+    var previous = {};
+
+    var larger = null;
+    for (edge in this.vertices[source]) {
+      if (larger == null) {
+        larger = this.vertices[source]
+      }
+      console.log(this.vertices[source][edge]);
     }
-    return weight;
+
+
+    return 'Teste'
+  }
+
+  bfs(capacity, flow, source, sink) {
+    let queue = [source];
+
+    while (queue) {
+      let vertice = queue.pop();
+
+    }
   }
 }
 
