@@ -52,8 +52,9 @@ public class Vertex {
         Edge edge = null;
         while(it.hasNext()){
             edge = (Edge) it.next();
-            if(edge.getWeight()>maximumWeight)
-                maximumWeight = edge.getWeight();
+            if(!edge.isVisited())
+                if(edge.getWeight()>maximumWeight)
+                    maximumWeight = edge.getWeight();
         }
         return edge;
     }

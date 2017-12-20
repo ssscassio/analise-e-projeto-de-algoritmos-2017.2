@@ -50,13 +50,13 @@ public class FordFulkerson {
                         reachedEnd = true;
                     }else{
                         maximumWeightEdge.setIsVisited(true);
-                        
+                        path.add(maximumWeightEdge);
                         originVertex = maximumWeightEdge.getStartVertex();
                         destinyVertex = maximumWeightEdge.getEndVertex();
                     }
                 }else{
                     reachedEnd = true;
-                    iterationsValues.add(backAndSubtract(path,minimumEdgeWeight,(Vertex)graph.getVertexList().get(source)));
+                    iterationsValues.add(backAndSubtract(path,minimumEdgeWeight));
                 }
             }
         }
@@ -68,18 +68,21 @@ public class FordFulkerson {
      * the minmumEdgeWeight found on path and setting "isVisited" false until reach the origin vertex. 
      * @return It returns a new minimum edge weight from path. 
      */
-    private int backAndSubtract(List<Edge> path,int minimumEdgeWeight, Vertex origin){
+    private int backAndSubtract(List<Edge> path,int minimumEdgeWeight){
         Edge edge;
         int newMinimumEdgeWeight = 9999999;
         while(!path.isEmpty()){
-            edge = path.remove(path.size()-1);
-            int edgeActualWeight = edge.getWeight();
-            int newEdgeWeight = edgeActualWeight - minimumEdgeWeight;
+            edge = path.remove(path.size()-1); //Get the latest path visited 
+            edge.setIsVisited(false); //Unsetting isVisited propertie
+            int edgeActualWeight = edge.getWeight(); 
+            int newEdgeWeight = edgeActualWeight - minimumEdgeWeight; //Updating the weight from edge
+            //Preventing negative weight
             if((newEdgeWeight)>0){
                 edge.setWeight(newEdgeWeight);
             }else{
                 edge.setWeight(0);
             }
+            //-----------------------------
             if(newEdgeWeight < newMinimumEdgeWeight){
                 newMinimumEdgeWeight = newEdgeWeight;
             }
