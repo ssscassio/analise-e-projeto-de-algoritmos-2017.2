@@ -22,8 +22,10 @@ Encontrar um fluxo de valor máximo que faça o melhor uso possível das capacid
 
 
 ## Complexidade
-Na maioria das implementações, o caminho de aumento mais curto é encontrado usando uma busca em largura, a qual roda em um tempo de **O(VEE)**
-
+A complexidade comum nas buscas em profundidade é **O(|V|\+|E|)**, no entanto,
+a implementada aqui é **O(|V|\*|E|)**. O algoritmo implementado possui um aperfeiçoamento por
+usar um HashMap, em que sua busca é de complexidade **O(1)**, em vantagem a outras implementações que usam
+listas, a qual possui complexidade, na busca, **O(|N|)**.
 
 ## Arquivo de entrada
 - **V** -> Número de vertices
