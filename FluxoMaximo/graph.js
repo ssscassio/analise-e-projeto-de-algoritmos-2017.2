@@ -38,15 +38,15 @@ class Graph {
 
     //Faz uma cópia do grafo no grafo residual
     let residualGraph = Object.assign({}, this.vertices);
-    //Enquanto houverem Nós a serem visitados pela busca em largura
-    while (this.bfs(source, sink, previous, visited, residualGraph)) {
+    //Enquanto o Nó de destino for alcançavel
+    while (this.bfs(source, sink, previous, visited, residualGraph)) { // Complexidade O(VE)
       var flow = Infinity;
 
       var vertex = sink;
-      while (vertex != source) {
+      while (vertex != source) { //Complexidade O(V)
         var last = previous[vertex];
-        if (residualGraph[last][vertex] < flow) {
-          flow = residualGraph[last][vertex];
+        if (residualGraph[last][vertex] < flow) { //Caso o valor da aresta em questão seja menor que o fluxo atual:
+          flow = residualGraph[last][vertex];   //Substitui-se o valor do fluxo pelo valor menor.
         }
         vertex = previous[vertex];
       }
@@ -54,7 +54,8 @@ class Graph {
       //No bloco seguinte percorre-se do último ao primeiro vertice subtraindo do peso das arestas
       // o valor do fluxo econtrado nesse caminho. 
       vertex = sink;
-      while (vertex != source) { //Enquanto não for o vértice de origem
+      //Enquanto não for o vértice de origem
+      while (vertex != source) { //Complexidade O(V)
         var last = previous[vertex];
         residualGraph[last][vertex] -= flow; //O peso da aresta será subtraido pelo valor do fluxo
         maxFlow += flow; //Fluxo máximo é acrescido do valor de fluxo do caminho encontrado
@@ -89,6 +90,7 @@ class Graph {
 
       var vertex = queue.shift();
 
+      //Para cada aresta, verifica se possui peso maior que 0 e se não foi visitada
       for (edge in residualGraph[vertex]) {
         if (residualGraph[vertex][edge] > 0 && !visited[edge]) {
           previous[edge] = vertex;
