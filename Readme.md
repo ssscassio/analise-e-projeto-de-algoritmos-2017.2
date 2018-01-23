@@ -7,14 +7,14 @@ O propósito do trabalho é o desenvolvimento de alguns algoritmos clássicos da
 ## Execução
 
 ### **Pré requisitos**
- - NodeJS
- - Baixar o repositório
+ - [NodeJS](https://nodejs.org/en/download/)
+ - [Baixar o repositório](https://github.com/ssscassio/analise-e-projeto-de-algoritmos-2017.2/archive/master.zip)
 
 
-### Dijkstra
+### [Dijkstra](./Dijkstra)
 1. Na raiz do projeto execute: **node Dijkstra**
 
-### Fluxo Máximo
+### [Fluxo Máximo](./FluxoMaximo)
 1. Na raiz do projeto execute: **node FluxoMaximo**
 
 ## Sobre
