@@ -57,11 +57,10 @@ class Graph {
       //Enquanto não for o vértice de origem
       while (vertex != source) { //Complexidade O(V)
         var last = previous[vertex];
-        residualGraph[last][vertex] -= flow; //O peso da aresta será subtraido pelo valor do fluxo
-        maxFlow += flow; //Fluxo máximo é acrescido do valor de fluxo do caminho encontrado
-
+        residualGraph[last][vertex] -= flow; //O peso da aresta será subtraido pelo valor do fluxo        
         vertex = previous[vertex];//Retorna ao vértice anterior
       }
+      maxFlow += flow; //Fluxo máximo é acrescido do valor de fluxo do caminho encontrado
     }
 
     return maxFlow;
