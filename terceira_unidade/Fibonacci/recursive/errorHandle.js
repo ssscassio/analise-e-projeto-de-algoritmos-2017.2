@@ -17,6 +17,10 @@ module.exports = function (number) {
         console.log('Digite um número maior ou igual a 0');
         return 1;
     }
+    if (!(number === '' + parseInt(number))) {
+        console.log('Digite um número inteiro');
+        return 1;
+    }
 
     return 0; // Finalizou sem erro
 }
