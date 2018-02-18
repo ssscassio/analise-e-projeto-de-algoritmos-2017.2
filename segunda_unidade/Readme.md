@@ -12,7 +12,9 @@ O propósito do trabalho é o desenvolvimento de alguns algoritmos clássicos da
 
 
 ### [Dijkstra](./Dijkstra)
-1. Na raiz do projeto execute: **node segunda_unidade/Dijkstra**
+1. Na raiz do projeto execute: 
+```node segunda_unidade/Dijkstra```
 
 ### [Fluxo Máximo](./FluxoMaximo)
-1. Na raiz do projeto execute: **node segunda_unidade/FluxoMaximo**
+1. Na raiz do projeto execute:
+```node segunda_unidade/FluxoMaximo```
