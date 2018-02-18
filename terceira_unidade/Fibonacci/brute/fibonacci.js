@@ -1,4 +1,4 @@
-function fibonacci(number) {
+module.exports = function (number) {
     var a = 1, b = 0, temp;
 
     while (number >= 0) {
@@ -10,5 +10,3 @@ function fibonacci(number) {
 
     return b;
 }
-
-module.exports = fibonacci;
