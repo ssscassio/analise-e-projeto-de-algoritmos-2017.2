@@ -32,5 +32,5 @@ const main = (err, data) => {
 
 
 // Leitura do arquivo de entrada
-let fileName = 'Dijkstra/graphData.txt';
+let fileName = 'segunda_unidade/Dijkstra/graphData.txt';
 FileStream.readFile(fileName, 'utf8', main);
