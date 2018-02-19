@@ -25,10 +25,10 @@ module.exports = function (points) {
 }
 
 /**
- * Calcula a distância euclidiana entre dois pontos passados como parâmetro
- * @param {Object} a Ponto A, objeto com x e y que representam sua coordenada no plano cartesiano
- * @param {Object} b Ponto B, objeto com x e y que representam sua coordenada no plano cartesiano
+ * Calcula a distância entre dois pontos passados como parâmetro
+ * @param {Object} a Ponto A, objeto com x que representa sua coordenada em uma reta
+ * @param {Object} b Ponto B, objeto com x que representa sua coordenada em uma reta
  */
 function calcDistance(a, b) {
-    return Math.sqrt(((b.x - a.x) * (b.x - a.x)) + ((b.y - a.y) * (b.y - a.y)));
+    return Math.abs((b.x - a.x))
 }

@@ -9,14 +9,11 @@ const main = (err, data) => {
   const numberOfPoints = parseInt(lines[0]);
   const points = []
   for (i = 1; i < numberOfPoints + 1; i++) {
-    point = lines[i].split(" ");
-    x = parseInt(point[0]);
-    y = parseInt(point[1]);
-    points.push({ x, y });
+    points.push({ x: parseInt(lines[i]) });
   }
-  let {distance, p1, p2} = shorterDistance(points);
-  
-  console.log(`A menor distância é ${distance} e os pontos são (${(p1.x)},${(p1.y)}) e (${(p2.x)},${(p2.y)})`);
+  let { distance, p1, p2 } = shorterDistance(points);
+
+  console.log(`A menor distância é ${distance} e os pontos são (${(p1.x)}) e (${(p2.x)})`);
 }
 
 // Leitura do arquivo de entrada
