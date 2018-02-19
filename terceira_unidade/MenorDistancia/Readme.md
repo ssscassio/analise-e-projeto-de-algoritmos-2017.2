@@ -1,7 +1,7 @@
-# Algoritmo da Menor Distância
+# Algoritmo da Menor Distância numa Fila
 
 ## Propósito
-Dado um conjunto de pontos com coordenadas X e Y, encontrar o par com menor distância euclidiana entre si.
+Dado um conjunto de pontos coordenada simples X, encontrar o par com menor distância entre si.
 
 ## Aproximações e execução
 
