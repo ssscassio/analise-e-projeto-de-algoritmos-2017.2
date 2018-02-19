@@ -11,8 +11,8 @@ O propósito do trabalho é o desenvolvimento de alguns algoritmos clássicos da
 
 ``` 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, ... ```
 
-### [Menor Distância](./MenorDistancia)
-- Encontrar os pontos mais próximos em um plano cartesiano.
+### [Menor Distância numa Fila](./MenorDistancia)
+- Encontrar os pontos mais próximos contidos em uma reta.
 
 ### **Pré requisitos**
  - [NodeJS](https://nodejs.org/en/download/)
