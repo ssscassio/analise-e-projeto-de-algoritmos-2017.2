@@ -1,7 +1,7 @@
 # Algoritmo da Menor Distância numa Fila
 
 ## Propósito
-Dado um conjunto de pontos coordenada simples X, encontrar o par com menor distância entre si.
+Dado um conjunto de pontos unidimensionais, ou seja, possuindo apenas uma coordenada, encontrar o par com menor distância entre si.
 
 ## Aproximações e execução
 
